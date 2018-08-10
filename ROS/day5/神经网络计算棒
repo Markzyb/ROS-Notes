@@ -1,0 +1,70 @@
+#movidius测试
+cd ~/ai_ws/ncappzoo/apps/image-classifier/
+
+
+python3 image-classifier.py 
+
+
+#sound play测试
+
+rosrun sound_play soundplay_node.py 
+rosrun sound_play say.py "Hello ROS"
+
+
+#ros服务
+
+rosrun turtlesim turtlesim_node 
+rosservice call /turtle1/teleport_absolute 
+
+在rosservice list下显示服务
+
+#用给话题发消息的方法
+rostopic pub /voice_system/tts_topic std_msgs/String "data：今天天气好"
+
+
+#语音文件
+
+ roslaunch voice_bringup voice_bringup.launch ，其中包含百度或者图灵的tts
+
+
+#微信控制
+
+#coding=utf8
+import requests
+import itchat
+
+KEY = '12c91238193b4aefabfe4ae254d5c177'
+
+def get_response(msg):
+    # 这里我们就像在“3. 实现最简单的与图灵机器人的交互”中做的一样
+    # 构造了要发送给服务器的数据
+    apiUrl = 'http://www.tuling123.com/openapi/api'
+    data = {
+        'key'    : KEY,
+        'info'   : msg,
+        'userid' : 'wechat-robot',
+    }
+    try:
+        r = requests.post(apiUrl, data=data).json()
+        # 字典的get方法在字典没有'text'值的时候会返回None而不会抛出异常
+        return r.get('text')
+    # 为了防止服务器没有正常响应导致程序异常退出，这里用try-except捕获了异常
+    # 如果服务器没能正常交互（返回非json或无法连接），那么就会进入下面的return
+    except:
+        # 将会返回一个None
+        return
+
+# 这里是我们在“1. 实现微信消息的获取”中已经用到过的同样的注册方法
+@itchat.msg_register(itchat.content.TEXT)
+def tuling_reply(msg):
+    # 为了保证在图灵Key出现问题的时候仍旧可以回复，这里设置一个默认回复
+    defaultReply = 'I received: ' + msg['Text']
+    # 如果图灵Key出现问题，那么reply将会是None
+    reply = get_response(msg['Text'])
+    # a or b的意思是，如果a有内容，那么返回a，否则返回b
+    # 有内容一般就是指非空或者非None，你可以用`if a: print('True')`来测试
+    return reply or defaultReply
+
+# 为了让实验过程更加方便（修改程序不用多次扫码），我们使用热启动
+itchat.auto_login(hotReload=True)
+itchat.run()

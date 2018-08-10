@@ -1,0 +1,30 @@
+#激光雷达
+
+启动文件后 
+ rostopic echo -n1 /scan 
+显示一帧的数据
+ rostopic echo  /scan 
+显示数据
+
+
+
+
+
+订阅正确话题，选择正确参考帧
+
+lazer scan：topic：/scan
+fixed frame： lidar_link
+
+可用rviz软件显示数据，但要修改全局变量为lidar camera
+
+
+雷达文件中 说明：
+
+停止扫描命令：
+	rostopic pub /startOrStop std_msgs/Int32 "data: 1"
+
+停止电机命令（停止电机也会停止扫描）:
+	rostopic pub /startOrStop std_msgs/Int32 "data: 2"
+
+开始扫描（先开电机，再开扫描）：
+	rostopic pub /startOrStop std_msgs/Int32 "data: 4"

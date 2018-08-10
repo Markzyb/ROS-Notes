@@ -1,0 +1,30 @@
+节点图形示意 
+rqt_graph
+
+rqt ：publish工具
+更快捷编辑topic
+
+电脑摄像头
+roslaunch usb_cam usb_cam-test.launch 
+
+
+rqt matplot    /cmd_vel/linear/y
+显示位置信息
+
+
+topic moniter
+
+tf tree 坐标变换工具
+
+
+
+
+
+rviz工具
+摄像头 点云 等
+
+
+gazebo工具
+roslaunch mx_urdf gazebo.launch 
+
+roslaunch mx_urdf display.launch 类似与建模软件

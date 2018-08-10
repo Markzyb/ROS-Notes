@@ -1,0 +1,119 @@
+intel@ROS-ZYB:~$ mkdir ros_ws/src -p
+intel@ROS-ZYB:~$ cd ros_
+ros_voice_system/ ros_ws/           
+intel@ROS-ZYB:~$ cd ros_ws/
+build/ devel/ src/   
+intel@ROS-ZYB:~$ cd ros_ws/src/
+intel@ROS-ZYB:~/ros_ws/src$ git clone https://github.com/ros-teleop/teleop_twist_keyboard.git
+Cloning into 'teleop_twist_keyboard'...
+remote: Counting objects: 71, done.
+remote: Total 71 (delta 0), reused 0 (delta 0), pack-reused 71
+Unpacking objects: 100% (71/71), done.
+Checking connectivity... done.
+intel@ROS-ZYB:~/ros_ws/src$ ls
+CMakeLists.txt  teleop_twist_keyboard  turtlesim_bringup
+intel@ROS-ZYB:~/ros_ws/src$ cd ..
+intel@ROS-ZYB:~/ros_ws$ catkin_make
+Base path: /home/intel/ros_ws
+Source space: /home/intel/ros_ws/src
+Build space: /home/intel/ros_ws/build
+Devel space: /home/intel/ros_ws/devel
+Install space: /home/intel/ros_ws/install
+####
+#### Running command: "cmake /home/intel/ros_ws/src -DCATKIN_DEVEL_PREFIX=/home/intel/ros_ws/devel -DCMAKE_INSTALL_PREFIX=/home/intel/ros_ws/install -G Unix Makefiles" in "/home/intel/ros_ws/build"
+####
+-- Using CATKIN_DEVEL_PREFIX: /home/intel/ros_ws/devel
+-- Using CMAKE_PREFIX_PATH: /home/intel/ros_voice_system/devel;/home/intel/catkin_ws/devel;/opt/ros/kinetic;/home/intel/mxBot_ws/devel;/home/intel/intel_ws/devel
+-- This workspace overlays: /home/intel/ros_voice_system/devel;/home/intel/catkin_ws/devel;/opt/ros/kinetic;/home/intel/mxBot_ws/devel;/home/intel/intel_ws/devel
+-- Using PYTHON_EXECUTABLE: /usr/bin/python
+-- Using Debian Python package layout
+-- Using empy: /usr/bin/empy
+-- Using CATKIN_ENABLE_TESTING: ON
+-- Call enable_testing()
+-- Using CATKIN_TEST_RESULTS_DIR: /home/intel/ros_ws/build/test_results
+-- Found gmock sources under '/usr/src/gmock': gmock will be built
+-- Found gtest sources under '/usr/src/gmock': gtests will be built
+-- Using Python nosetests: /usr/bin/nosetests-2.7
+-- catkin 0.7.11
+-- BUILD_SHARED_LIBS is on
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 2 packages in topological order:
+-- ~~  - teleop_twist_keyboard
+-- ~~  - turtlesim_bringup
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: 'teleop_twist_keyboard'
+-- ==> add_subdirectory(teleop_twist_keyboard)
+-- +++ processing catkin package: 'turtlesim_bringup'
+-- ==> add_subdirectory(turtlesim_bringup)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/intel/ros_ws/build
+####
+#### Running command: "make -j4 -l4" in "/home/intel/ros_ws/build"
+####
+intel@ROS-ZYB:~/ros_ws$ ls
+build  devel  src
+intel@ROS-ZYB:~/ros_ws$ cd devel/
+intel@ROS-ZYB:~/ros_ws/devel$ 
+intel@ROS-ZYB:~/ros_ws/devel$ source setup.bash
+intel@ROS-ZYB:~/ros_ws/devel$ 
+intel@ROS-ZYB:~/ros_ws/devel$ cd ..
+intel@ROS-ZYB:~/ros_ws$ ls
+build  devel  src
+intel@ROS-ZYB:~/ros_ws$ src
+No command 'src' found, but there are 27 similar ones
+src: command not found
+intel@ROS-ZYB:~/ros_ws$ cd src
+intel@ROS-ZYB:~/ros_ws/src$ ls
+CMakeLists.txt  teleop_twist_keyboard  turtlesim_bringup
+intel@ROS-ZYB:~/ros_ws/src$ cd ..
+intel@ROS-ZYB:~/ros_ws$ ls
+build  devel  src
+intel@ROS-ZYB:~/ros_ws$ cd devel
+intel@ROS-ZYB:~/ros_ws/devel$ source setup.bash
+intel@ROS-ZYB:~/ros_ws/devel$ cd ..
+intel@ROS-ZYB:~/ros_ws$ cd src
+intel@ROS-ZYB:~/ros_ws/src$ ls
+CMakeLists.txt  teleop_twist_keyboard  turtlesim_bringup
+intel@ROS-ZYB:~/ros_ws/src$ roslaunch teleop_twist_keyboard/
+[teleop_twist_keyboard/] is not a launch file name
+The traceback for the exception was written to the log file
+intel@ROS-ZYB:~/ros_ws/src$ ;d
+bash: syntax error near unexpected token `;'
+intel@ROS-ZYB:~/ros_ws/src$ ls
+CMakeLists.txt  teleop_twist_keyboard  turtlesim_bringup
+intel@ROS-ZYB:~/ros_ws/src$ rospa
+rospack   rospair   rosparam  
+intel@ROS-ZYB:~/ros_ws/src$ rospack profile 
+Full tree crawl took 0.033181 seconds.
+Directories marked with (*) contain no manifest.  You may
+want to delete these directories.
+To get just of list of directories without manifests,
+re-run the profile with --zombie-only
+-------------------------------------------------------------
+0.024708   /opt/ros/kinetic/share
+0.002071   /home/intel/mxBot_ws/src
+0.002018   /home/intel/catkin_ws/src
+0.002009   /home/intel/intel_ws/src
+0.001146   /home/intel/catkin_ws/src/rbx2
+0.000996   /home/intel/mxBot_ws/src/mx_turtleBot
+0.000900   /home/intel/ros_voice_system/src
+0.000534   /home/intel/intel_ws/src/ros_intel_movidius_ncs
+0.000490   /home/intel/intel_ws/src/ros_moving_object
+0.000443   /home/intel/catkin_ws/src/rbx1
+0.000409 * /home/intel/mxBot_ws/src/joystick_drivers
+0.000335   /home/intel/intel_ws/src/ros_object_analytics
+0.000298 * /opt/ros/kinetic/share/ompl
+0.000273   /home/intel/catkin_ws/src/arbotix_ros
+0.000251   /home/intel/intel_ws/src/ros_moving_object/sample
+0.000209   /home/intel/ros_ws/src
+0.000190 * /opt/ros/kinetic/share/ompl/demos
+0.000182 * /home/intel/mxBot_ws/src/libuvc_ros
+0.000177   /home/intel/intel_ws/src/ros_opencl_caffe
+0.000153 * /opt/ros/kinetic/share/OpenCV-3.3.1-dev
+intel@ROS-ZYB:~/ros_ws/src$ rosrun teleop_twist_keyboard 
+Usage: rosrun [--prefix cmd] [--debug] PACKAGE EXECUTABLE [ARGS]
+  rosrun will locate PACKAGE and try to find
+  an executable named EXECUTABLE in the PACKAGE tree.
+  If it finds it, it will run it with ARGS.
+

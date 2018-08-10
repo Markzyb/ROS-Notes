@@ -1,0 +1,193 @@
+#opencv
+
+建立文件 touch image_read.py
+设置可执行权限 sudo chmod +x image_read.py
+用gedit编写
+
+import numpy as np
+import cv2
+（以上在导入库）
+img = cv2.imread('img.jpg',0)
+
+//img.jpg为文件路经，如果不在桌面上可以输入完整路经
+
+
+
+
+展示图片：
+
+cv2.imshow('image',img)
+cv2.waitKey (0)
+
+cv2.destroyAllWindows()
+
+//出现黑白文件，把img = cv2.imread('img.jpg',0)改成img = cv2.imread('img.jpg')变成彩色
+
+进入终端执行 python image_read.py 
+
+
+
+文件名更改：
+
+import numpy as np
+import cv2
+
+img = cv2.imread('/home/intel/Desktop/img.jpg',0)
+
+
+cv2.imshow('gaiminzi',img)
+cv2.waitKey (0)
+
+//waitkey为等待按键，按任何按键都可以关掉图片
+//但是手动关闭图片后，代码没反应
+
+cv2.destroyAllWindows()
+
+
+若有两个名字：
+
+
+img = cv2.imread('/home/intel/Desktop/img.jpg',0)
+cv2.imshow('gaiminzi',img)
+//img为变量名
+
+img2 = cv2.imread('/home/intel/Desktop/img2.jpg',0)
+cv2.imshow('gaiminzi2',img2)
+//img2为变量名
+//定义两个变量
+
+
+
+#gedit中文注释报错
+在第一行加入# --coding: utf-8--
+
+
+
+
+#从摄像头中显示画面
+
+
+import numpy as np
+import cv2
+//import cv2 as cv，将cv赋予cv2的功能
+
+
+cap = cv2. VideoCapture (0)
+
+while(True):
+
+	ret, frame = cap.read()
+	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+//将彩色画面转90度：
+	temp = np.rot90(frame)
+	cv2.imshow('frame',temp)
+//转180度需复制一遍90度的程序
+	if cv2.waitKey(1)& 0xFF == ord('q'):
+		break
+
+cap.release()
+cv.destroyALLWindows()
+
+//原理为一直循环，一帧一帧转换为灰度画面显示出来
+
+
+#opencv绘图
+
+python交互模式：直接输入 python
+
+
+
+>>> import numpy as np
+>>> import cv2
+>>> img = np.zeros((512,512,3),np.uint8)
+>>> cv2.line(img,(0,0),(511,511),(255,0,0),5)
+array([[[255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0],
+        ..., 
+        [  0,   0,   0],
+        [  0,   0,   0],
+        [  0,   0,   0]],
+
+       [[255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0],
+        ..., 
+        [  0,   0,   0],
+        [  0,   0,   0],
+        [  0,   0,   0]],
+
+       [[255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0],
+        ..., 
+        [  0,   0,   0],
+        [  0,   0,   0],
+        [  0,   0,   0]],
+
+       ..., 
+       [[  0,   0,   0],
+        [  0,   0,   0],
+        [  0,   0,   0],
+        ..., 
+        [255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0]],
+
+       [[  0,   0,   0],
+        [  0,   0,   0],
+        [  0,   0,   0],
+        ..., 
+        [255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0]],
+
+       [[  0,   0,   0],
+        [  0,   0,   0],
+        [  0,   0,   0],
+        ..., 
+        [255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0]]], dtype=uint8)
+>>> imshow(changshi),img
+
+>>> line = cv2.line(img,(0,0),(511,511),(255,0,0),5)
+
+
+>>> cv2.imshow('changshi',img)
+>>> cv2.imshow('changshi',img);cv2.waitKey(0); //延长显示
+84
+>>> 
+
+
+
+
+
+#在灰色画面摄像机画面上加一条线
+
+
+while(True):
+
+	ret, frame = cap.read()
+	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+	
+	#temp = np.rot90(frame)
+	 #rotate 90 degrees,RGB
+
+
+
+
+	line = cv2.line(gray,(0,0),(511,511),(255,0,0),5)
+
+	cv2.imshow('frame',line)
+	
+
+//思路为在gray基础上修改，名字是line，然后显示出来
+
+	if cv2.waitKey(1)& 0xFF == ord('q'):
+		break
+
+
+
+

@@ -1,0 +1,7 @@
+<launch>
+
+<include file="$(find mx_urdf)/launch/gazebo.launch" />
+
+<node name="v_joystick" pkg="mx_teleop" type="virtual_joystick.py" />
+
+</launch>

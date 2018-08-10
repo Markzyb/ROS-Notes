@@ -1,0 +1,80 @@
+#基础
+
+caffe，tensorflow，是框架
+
+
+
+#ros编程
+
+
+消息发布
+#!/usr/bin/env python
+
+import rospy
+from std_msgs.msg import String
+
+def talker():
+
+	pub = rospy.Publisher('chatter',String,queue_size=10)
+	rospy.init_node('talker',anonymous=True)
+	rate = rospy.Rate(10)#10hz
+	while not rospy.is_shutdown():
+	
+		hello_str = "hello world %s" %rospy.get_time()
+		#rospy.loginfo(hello_str)
+		#rospy.loginfo(rospy.get_time())
+		pub.publish(" 1234")
+		rate.sleep()
+
+if __name__== '__main__':
+
+	try:
+	
+	  talker()
+	except rospy.ROSInterruptException:
+	      pass
+
+
+
+
+
+
+#用指令控制乌龟
+
+#!/usr/bin/env python
+
+import rospy
+from geometry_msgs.msg import Twist
+def talker():
+
+	pub = rospy.Publisher('/turtle1/cmd_vel',Twist,queue_size=10)
+	rospy.init_node('talker',anonymous=False) 
+	rate = rospy.Rate(10000) #10hz
+	while not rospy.is_shutdown():
+		pub_twist = Twist()
+        	pub_twist.linear.x = 19
+        	pub_twist.linear.y = 0
+        	pub_twist.linear.z = 0
+        	pub_twist.angular.x = 0
+        	pub_twist.angular.y = 0
+        	pub_twist.angular.z = 4
+		
+		pub.publish( pub_twist )
+		rate.sleep()
+
+if __name__== '__main__':
+
+	try:
+	    talker()
+	except rospy.ROSInterruptException:
+	      pass
+
+
+///线速度调x轴，旋转调z轴。旋转值为绕某轴旋转。
+
+
+
+
+
+
+

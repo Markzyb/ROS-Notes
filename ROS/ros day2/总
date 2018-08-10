@@ -1,0 +1,160 @@
+mxBot_ws ------ work space 
+
+src------ 源代码
+mx_turtleBot不是功能包，里面的bringup才是
+
+
+#创建工作空间
+ mkdir -p ros_ws/src
+创建名为ros的工作空
+
+编译工作空间
+在ros_ws的文件夹下输入 catkin_make
+出现 build和devel两个文件夹
+
+创建功能包
+在src的文件夹下输入catkin_create_pkg turtlesim_bringup rospy 
+名为 turtlesim，rospy为编程调用的库的名称，和使用语言有关
+
+进入devel
+source setup.bash 调出bringup
+
+直接跳到另一个公文包
+roscd turtlesim_bringup/
+
+编写launch文件
+在bringup文件夹里创建launch文件夹，在文件夹里创建文件
+用gedit编辑 gedit demo.launch
+
+<node name="noidea" pkg="turtlesim" type="turtlesim_node" />
+
+添加launch权限
+
+<launch>
+<node name="noidea" pkg="turtlesim" type="turtlesim_node" />
+
+</launch>
+
+添加另一个node，如使用键盘控制
+
+总文件为
+<launch>
+<node name="noidea" pkg="turtlesim" type="turtlesim_node" />
+<node name="control" pkg="turtlesim" type="turtle_teleop_key" />
+
+
+</launch>
+
+type为可执行文件名
+
+
+
+
+用虚拟遥感操纵乌龟时，用rostopic list找出共有话题，然后在遥感源文件修改
+
+或使用指令：
+启动两个话题
+rosrun topic_tools relay /cmd_vel /turtle1/cmd_vel
+
+
+rospack profile 重新加载文件
+
+
+
+
+#在gazebo中用虚拟遥感控制机器人
+
+include:
+
+
+<launch>
+
+<include file="$(find mx_urdf)/launch/gazebo.launch" />
+
+<node name="v_joystick" pkg="mx_teleop" type="virtual_joystick.py" />
+
+</launch>
+
+
+
+不用include：
+
+复制gazebo的launch文件
+
+
+<launch>
+ <include
+    file="$(find gazebo_ros)/launch/empty_world.launch" />
+  <node
+    name="tf_footprint_base"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 base_link base_footprint 40" />
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-file $(find mx_urdf)/urdf/mx_urdf.urdf -urdf -model mx_urdf"
+    output="screen" />
+  <node
+    name="fake_joint_calibration"
+    pkg="rostopic"
+    type="rostopic"
+    args="pub /calibrated std_msgs/Bool true" /> 
+
+<node name="joystick" pkg="mx_teleop" type="virtual_joystick.py" />
+</launch>
+
+
+
+
+#实用工具
+节点图形示意 
+rqt_graph
+
+rqt ：publish工具
+更快捷编辑topic
+
+电脑摄像头
+roslaunch usb_cam usb_cam-test.launch 
+
+
+rqt matplot    /cmd_vel/linear/y
+显示位置信息
+
+
+topic moniter
+
+tf tree 坐标变换工具
+
+
+
+
+
+rviz工具
+摄像头 点云 等
+
+
+gazebo工具
+roslaunch mx_urdf gazebo.launch 
+
+roslaunch mx_urdf display.launch 类似与建模软件
+
+
+
+
+#Demo：
+<launch>
+
+<include file="$(find mx_urdf)/launch/gazebo.launch" />
+
+<node name="v_joystick" pkg="mx_teleop" type="virtual_joystick.py" />
+
+</launch>
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+运行话题
+roscore
+rosrun
+
+
+
+rostopic list 显示正在执行的话题
+
+rostopic info 显示订阅者和发布者
+
+rostopic echo 显示话题消息
+
+rosfind 寻找特定话题种类的话题
+
+rospub 虚拟实例下指令
+rostopic pub /turtle1/cmd_vel geometry_msgs/Twist "linear:
+  x: 100.0
+  y: 100.0
+  z: 0.0
+angular:
+  x: 10.0
+  y: 10.0
+  z: 00.0" 
+
+
+
+ros机器人实际常用指令
+
+启动底盘：
+roslaunch mx_bringup rbc_mini_start.launch 
+
+下指令：rostopic pub /cmd_vel geometry_msgs/Twist "linear:
+  x: 100.0
+  y: 100.0
+  z: 0.0
+angular:
+  x: 10.0
+  y: 10.0
+  z: 00.0" 
+
+
